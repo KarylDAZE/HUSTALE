@@ -9,14 +9,12 @@ public class HealthCollectible : MonoBehaviour
    {
       PlayerController controller = collision.GetComponent<PlayerController>();
       if (controller != null)
-            if (controller.currentSword<controller.maxSword)
-            {
-                controller.ChangeHealth(2);
-            GameObject.Find("--Main Control--").GetComponent<RandomCollectible>().ChangeSwordCollectibleCount(-1);
+         if (controller.currentSword < controller.maxSword)
+         {
+            controller.ChangeHealth(2);
+            GameObject.Find("--Main Control--").GetComponent<RandomCollectible>().pushHealthCollectible(gameObject);
+         }
 
-            Destroy(gameObject); 
-      }
-      
    }
 
 }

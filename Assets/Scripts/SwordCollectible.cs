@@ -10,11 +10,10 @@ public class SwordCollectible : MonoBehaviour
     {
         PlayerController controller = collision.GetComponent<PlayerController>();
         if (controller != null)
-            if (controller.currentSword<controller.maxSword)
+            if (controller.currentSword < controller.maxSword)
             {
                 controller.ChangeSword(10);
-                GameObject.Find("--Main Control--").GetComponent<RandomCollectible>().ChangeSwordCollectibleCount(-1);
-                Destroy(this.gameObject);
+                GameObject.Find("--Main Control--").GetComponent<RandomCollectible>().pushSwordCollectible(gameObject);
                 //PlayerController.PlaySound(collectedClip);
             }
     }
