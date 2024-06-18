@@ -12,9 +12,7 @@ public class HealthCollectible : MonoBehaviour
          if (controller.currentSword < controller.maxSword)
          {
             controller.ChangeHealth(2);
-            GameObject.Find("--Main Control--").GetComponent<RandomCollectible>().pushHealthCollectible(gameObject);
+            GameObject.Find("--Main Control--").GetComponent<RandomCollectible>().PushHealthCollectible(gameObject);
          }
-
    }
-
 }

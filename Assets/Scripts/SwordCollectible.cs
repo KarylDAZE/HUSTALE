@@ -13,7 +13,7 @@ public class SwordCollectible : MonoBehaviour
             if (controller.currentSword < controller.maxSword)
             {
                 controller.ChangeSword(10);
-                GameObject.Find("--Main Control--").GetComponent<RandomCollectible>().pushSwordCollectible(gameObject);
+                GameObject.Find("--Main Control--").GetComponent<RandomCollectible>().PushSwordCollectible(gameObject);
                 //PlayerController.PlaySound(collectedClip);
             }
     }

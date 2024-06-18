@@ -13,7 +13,7 @@ public class RandomCollectible : MonoBehaviour
     private GameObject poolRoot, swordPool, healthPool;
     private Queue<GameObject> swordQueue, healthQueue;
     public enum CollectibleType { SWORD, HEALTH };
-    // Start is called before the first frame update
+
     void Start()
     {
         swordCollectibleTimer = swordCollectibleCd;
@@ -27,16 +27,8 @@ public class RandomCollectible : MonoBehaviour
         healthPool.transform.SetParent(poolRoot.transform);
         swordQueue = new Queue<GameObject>();
         healthQueue = new Queue<GameObject>();
-        // var types = System.Enum.GetValues(typeof(CollectibleType));
-        // foreach (var type in types)
-        // {
-        //     objectPoolQueues.Add(new Queue());
-        //     GameObject pool = new GameObject(type.ToString());
-        //     objectPoolGameObjects.Add(pool);
-        //}
     }
 
-    // Update is called once per frame
     void Update()
     {
         swordCollectibleTimer -= Time.deltaTime;
@@ -48,7 +40,7 @@ public class RandomCollectible : MonoBehaviour
             {
                 confiner = collectibleConfiners[Random.Range(0, collectibleConfinersCount)];
                 Vector2 swordPos = new Vector2(Random.Range(confiner.bounds.min.x + 1, confiner.bounds.max.x - 1), Random.Range(confiner.bounds.min.y + 1, confiner.bounds.max.y - 1));
-                GameObject newSwordCollectible = popSwordCollectible();
+                GameObject newSwordCollectible = PopSwordCollectible();
                 newSwordCollectible.transform.position = swordPos;
             }
         }
@@ -59,12 +51,13 @@ public class RandomCollectible : MonoBehaviour
             {
                 confiner = collectibleConfiners[Random.Range(0, collectibleConfinersCount)];
                 Vector2 healthPos = new Vector2(Random.Range(confiner.bounds.min.x + 1, confiner.bounds.max.x - 1), Random.Range(confiner.bounds.min.y + 1, confiner.bounds.max.y - 1));
-                GameObject newHealthCollectible = popHealthCollectible();
+                GameObject newHealthCollectible = PopHealthCollectible();
                 newHealthCollectible.transform.position = healthPos;
             }
         }
     }
-    public GameObject popSwordCollectible()
+
+    public GameObject PopSwordCollectible()
     {
         GameObject swordPrefab;
         if (0 == swordQueue.Count)
@@ -79,7 +72,7 @@ public class RandomCollectible : MonoBehaviour
         return swordPrefab;
     }
 
-    public void pushSwordCollectible(GameObject swordPrefab)
+    public void PushSwordCollectible(GameObject swordPrefab)
     {
         if (swordPrefab == null) return;
         swordPrefab.SetActive(false);
@@ -87,7 +80,7 @@ public class RandomCollectible : MonoBehaviour
         ChangeSwordCollectibleCount(-1);
     }
 
-    public GameObject popHealthCollectible()
+    public GameObject PopHealthCollectible()
     {
         GameObject healthPrefab;
         if (0 == healthQueue.Count)
@@ -102,7 +95,7 @@ public class RandomCollectible : MonoBehaviour
         return healthPrefab;
     }
 
-    public void pushHealthCollectible(GameObject healthPrefab)
+    public void PushHealthCollectible(GameObject healthPrefab)
     {
         if (healthPrefab == null) return;
         healthPrefab.SetActive(false);

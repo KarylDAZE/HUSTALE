@@ -4,22 +4,21 @@ using UnityEngine;
 
 public class StarCollectible : MonoBehaviour
 {
-    public AudioClip winClip,collectClip,winMusic;
-    private void Start()
-    {
-    }
+    public AudioClip winClip, collectClip, winMusic;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         PlayerController controller = collision.GetComponent<PlayerController>();
         if (controller != null)
         {
             Main.collectedStarCount++;
-        PlayerController.PlaySound(collectClip);
+            PlayerController.PlaySound(collectClip);
             Destroy(this.gameObject);
             if (Main.collectedStarCount >= 4)
                 Win();
         }
     }
+
     void Win()
     {
         PlayerController.PlaySound(winClip);

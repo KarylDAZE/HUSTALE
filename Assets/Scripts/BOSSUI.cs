@@ -6,19 +6,19 @@ using UnityEngine.UI;
 
 public class BOSSUI : MonoBehaviour
 {
-    public static BOSSUI instance { get; private set; }
+    public static BOSSUI Instance { get; private set; }
     public Image healthbar;
     private void Awake()
     {
-        instance = this;
-        if (PlayerPrefs.GetInt("OfficeCompleted")==1)
+        Instance = this;
+        if (PlayerPrefs.GetInt("OfficeCompleted") == 1)
             healthbar.gameObject.SetActive(false);
 
     }
-   
+
     public void UpdateHealthBar(int currentamount, int amount)
     {
         healthbar.fillAmount = (float)currentamount / amount;
     }
-   
+
 }

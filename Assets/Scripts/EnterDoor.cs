@@ -18,30 +18,28 @@ public class EnterDoor : MonoBehaviour
         PlayerController player = collision.gameObject.GetComponent<PlayerController>();
         Scene scene = SceneManager.GetActiveScene();
 
-        if (player != null&&isOpen)
+        if (player != null && isOpen)
         {
-            //Scene scene =SceneManager.GetActiveScene();
             PlayerPrefs.SetInt("health", player.currentHealth);
             PlayerPrefs.SetInt("sword", player.currentSword);
-            //Debug.Log( scene.name+" enter "+player.currentHealth+player.currentSword);
-            PlayerPrefs.SetInt(scene.name+"Completed", 1);
+            PlayerPrefs.SetInt(scene.name + "Completed", 1);
             if (scene.name.Equals("Main"))
             {
                 if (enterSceneName.Equals("Library"))
                 {
                     PlayerPrefs.SetFloat("Position.x", player.transform.position.x);
-                    PlayerPrefs.SetFloat("Position.y", player.transform.position.y-1);
+                    PlayerPrefs.SetFloat("Position.y", player.transform.position.y - 1);
                 }
                 else if (enterSceneName.Equals("Office"))
                 {
-                    PlayerPrefs.SetFloat("Position.x", player.transform.position.x+1);
+                    PlayerPrefs.SetFloat("Position.x", player.transform.position.x + 1);
                     PlayerPrefs.SetFloat("Position.y", player.transform.position.y);
                 }
             }
-            PlayerPrefs.SetFloat(scene.name+"LookDirection.x", player.lookDirection.x);
-            PlayerPrefs.SetFloat(scene.name+"LookDirection.y", player.lookDirection.y);
+            PlayerPrefs.SetFloat(scene.name + "LookDirection.x", player.lookDirection.x);
+            PlayerPrefs.SetFloat(scene.name + "LookDirection.y", player.lookDirection.y);
 
-            Main.hasChangedScene=true;
+            Main.hasChangedScene = true;
             audioSource.PlayOneShot(doorClip);
             DontDestroyOnLoad(audioSource);
             SceneManager.LoadScene(enterSceneName);

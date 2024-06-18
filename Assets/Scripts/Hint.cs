@@ -8,19 +8,18 @@ public class Hint : MonoBehaviour
     bool isHintAppearing = true, isLose = false, isWin = false;
     public GameObject hint, helpHint, loseHint, winHint;
     public static Hint instance { get; private set; }
-    // Start is called before the first frame update
+
     void Start()
     {
         instance = this;
         if (Main.hasChangedScene) return;
-        Time.timeScale=0;
+        Time.timeScale = 0;
         hint.SetActive(true);
         helpHint.SetActive(true);
         loseHint.SetActive(false);
         winHint.SetActive(false);
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (isLose)
@@ -38,25 +37,24 @@ public class Hint : MonoBehaviour
         }
         else
         {
-            if (Input.GetKeyDown(KeyCode.Escape)&&isHintAppearing)
+            if (Input.GetKeyDown(KeyCode.Escape) && isHintAppearing)
             {
-                isHintAppearing=false;
-                Time.timeScale=1;
+                isHintAppearing = false;
+                Time.timeScale = 1;
                 hint.SetActive(false);
             }
-            else if (Input.GetKeyDown(KeyCode.Q)&&isHintAppearing)
+            else if (Input.GetKeyDown(KeyCode.Q) && isHintAppearing)
             {
 #if UNITY_EDITOR
                 UnityEditor.EditorApplication.isPlaying = false;
-
 #else
-         Application.Quit();
+                Application.Quit();
 #endif
             }
-            else if (Input.GetKeyDown(KeyCode.Escape)&&!isHintAppearing)
+            else if (Input.GetKeyDown(KeyCode.Escape) && !isHintAppearing)
             {
-                isHintAppearing=true;
-                Time.timeScale=0;
+                isHintAppearing = true;
+                Time.timeScale = 0;
                 hint.SetActive(true);
                 helpHint.SetActive(true);
                 loseHint.SetActive(false);

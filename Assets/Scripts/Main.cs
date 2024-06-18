@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class Main : MonoBehaviour
 {
     public static Main Instance;
-    public static bool hasChangedScene=false;
+    public static bool hasChangedScene = false;
     public static int collectedStarCount = 0;
     // Start is called before the first frame update
     void Awake()
@@ -24,9 +24,4 @@ public class Main : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
